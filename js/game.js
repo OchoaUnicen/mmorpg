@@ -46,6 +46,9 @@ function cargar_game_js() {
     arquero.src = "./img/arquero.png"
 
 
+    //sistema de movimiento Aca se incluye la clase teclas.js
+    document.addEventListener('keydown', (e) => {Teclas[e.keyCode] = true});
+    document.addEventListener('keyup', (e) => {Teclas[e.keyCode] = false });
 
 
 
@@ -64,10 +67,11 @@ function cargar_game_js() {
         context.clearRect(0, 0, canvas.width, canvas.heigh);
         context.drawImage(fondo, 0, 0, fondo.naturalWidth, fondo.naturalHeight);
 
-
         //dibuja al arquero
         context.drawImage(arquero, 0, 0 , arquero.naturalWidth, arquero.naturalHeight);
 
+
+        
 
     }
     tiempo();
