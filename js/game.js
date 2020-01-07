@@ -10,7 +10,7 @@ function cargar_game_js() {
         window.msRequestAnimationFrame;
 
     let canvas = document.getElementById('lienzo');
-    let context = canvas.getContext('2d'); 
+    let context = canvas.getContext('2d');
 
 
 
@@ -18,11 +18,6 @@ function cargar_game_js() {
     const LIMITE_IZQUIERDO = 0;
     const LIMITE_DERECHO = 910;
     const LIMITE_INFERIOR = 370;
-
-
-
-
-
 
 
 
@@ -40,10 +35,16 @@ function cargar_game_js() {
 
 
 
-
-
+    //imagen del fondo
     let fondo = new Image();
     fondo.src = "./img/fondo.png";
+
+
+
+    //imagen del arquero
+    let arquero = new Image();
+    arquero.src = "./img/arquero.png"
+
 
 
 
@@ -57,16 +58,19 @@ function cargar_game_js() {
 
         console.log("Funca");
 
-    //drawImage tiene 4 parametros: Imagen a ser invocada en la funcion,inicio eje x,inicio eje y, tamaño.widht, tamaño.heigh 
-    context.clearRect(0, 0, canvas.width, canvas.heigh);
-    context.drawImage(fondo, 0, 0, fondo.naturalWidth, fondo.naturalHeight);
+
+        //drawImage tiene 4 parametros: Imagen a ser invocada en la funcion,inicio eje x,inicio eje y, tamaño.widht, tamaño.heigh 
+        //dibuja el fondo 
+        context.clearRect(0, 0, canvas.width, canvas.heigh);
+        context.drawImage(fondo, 0, 0, fondo.naturalWidth, fondo.naturalHeight);
 
 
+        //dibuja al arquero
+        context.drawImage(arquero, 0, 0 , arquero.naturalWidth, arquero.naturalHeight);
 
-        }
 
-
-        tiempo();
+    }
+    tiempo();
 
 
 
