@@ -17,7 +17,8 @@ function cargar_game_js() {
     //limites del mapa
     const LIMITE_IZQUIERDO = 0;
     const LIMITE_DERECHO = 910;
-    const LIMITE_INFERIOR = 370;
+    const LIMITE_INFERIOR = 415;
+    const LIMITE_SUPERIOR = -20;
 
 
 
@@ -51,12 +52,69 @@ function cargar_game_js() {
 
 
 
+    //variables de la cuales depende el sistema de movimiento del arquero
+    let velocidad = 0;
+    let limite_aceleracion = 5;
+    function actualizarMovimientosArquero(){
+
+
+        if(!Arquero.muerto){        
+            if (Teclas[tecla.letra_d] == true && Arquero.posicion_x < LIMITE_DERECHO) {
+                // Derecha                    
+                //console.log("derecha true");       
+                //console.log(Arquero.posicion_x);
+                if (velocidad < limite_aceleracion) {        
+                    velocidad = velocidad + 1;        
+                }        
+                Arquero.posicion_x += velocidad;        
+            }
+        
+            if (Teclas[tecla.letra_a] == true &&  Arquero.posicion_x > LIMITE_IZQUIERDO) {
+                //Izquierda                 
+                //console.log(direccion);        
+                if (velocidad < limite_aceleracion) {        
+                    velocidad = velocidad + 1;        
+                }
+                Arquero.posicion_x -= velocidad;
+            }
+
+            if (Teclas[tecla.letra_w] == true && Arquero.posicion_y > LIMITE_SUPERIOR) {
+                //Tecla W - arriba                 
+                if (velocidad < limite_aceleracion) {
+                    velocidad = velocidad + 1;
+                }
+                Arquero.posicion_y -= velocidad;
+
+
+            }
+            if (Teclas[tecla.letra_s] == true && Arquero.posicion_y < LIMITE_INFERIOR) {
+                //Tecla W - arriba                 
+                if (velocidad < limite_aceleracion) {
+                    velocidad = velocidad + 1;
+                }
+                Arquero.posicion_y += velocidad;
+
+
+            }
+
+        
+
+        }
+
+
+
+
+    }
+
+
+
 
     //renderizacion - Todo dentro se realizarada 60 veces por segundo
     function tiempo() {
         frame(tiempo);
+        actualizarMovimientosArquero();
 
-        console.log("Funca");
+        
 
 
         //drawImage tiene 4 parametros: Imagen a ser invocada en la funcion,inicio eje x,inicio eje y, tamaño.widht, tamaño.heigh 
