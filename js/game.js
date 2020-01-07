@@ -15,8 +15,8 @@ function cargar_game_js() {
 
 
     //limites del mapa
-    const LIMITE_IZQUIERDO = 0;
-    const LIMITE_DERECHO = 910;
+    const LIMITE_IZQUIERDO = -10;
+    const LIMITE_DERECHO = 920;
     const LIMITE_INFERIOR = 415;
     const LIMITE_SUPERIOR = -20;
 
@@ -55,9 +55,8 @@ function cargar_game_js() {
     //variables de la cuales depende el sistema de movimiento del arquero
     let velocidad = 0;
     let limite_aceleracion = 5;
+
     function actualizarMovimientosArquero(){
-
-
         if(!Arquero.muerto){        
             if (Teclas[tecla.letra_d] == true && Arquero.posicion_x < LIMITE_DERECHO) {
                 // Derecha                    
@@ -95,19 +94,49 @@ function cargar_game_js() {
                 Arquero.posicion_y += velocidad;
 
 
-            }
-
-        
+            }       
 
         }
 
+    }
 
+    //-------
+
+
+
+
+    canvas.onmousemove = function (e) {
+
+        console.log(getMousePos(canvas, e));
 
 
     }
 
 
 
+
+
+    canvas.addEventListener("click", function (evt) {
+        var mousePos = getMousePos(canvas, evt);
+
+        console.log("clicked");
+        console.log(mousePos.x + ',' + mousePos.y);     
+
+        
+    }, false);
+    
+    //Get Mouse Position
+    function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+
+
+
+    //-------
 
     //renderizacion - Todo dentro se realizarada 60 veces por segundo
     function tiempo() {
