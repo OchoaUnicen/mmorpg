@@ -142,6 +142,24 @@ function cargar_game_js() {
 
 
 
+
+    function dibujarArquero() {
+
+
+           
+          context.save();
+            
+          //Se utiliza translate para cambiar el centro de rotacion hacia el punto deseado
+            context.translate(Arquero.posicion_x + (Arquero.w /2), Arquero.posicion_y + (Arquero.h / 2));
+            context.rotate(Math.random() + 10 * Math.PI / 180);
+            //context.drawImage(Arquero.imagen, Arquero.posicion_x, Arquero.posicion_y, Arquero.imagen.naturalWidth, Arquero.imagen.naturalHeight);
+            context.drawImage(Arquero.imagen, -Arquero.imagen.width /2  , -Arquero.imagen.width /2 );
+           // console.log("entrovski");
+
+         context.restore();
+            
+
+    }
     //-------
 
     //renderizacion - Todo dentro se realizarada 60 veces por segundo
@@ -158,25 +176,28 @@ function cargar_game_js() {
         context.drawImage(fondo, 0, 0, fondo.naturalWidth, fondo.naturalHeight);
 
         //dibuja al arquero
-        
-        context.drawImage(Arquero.imagen, Arquero.posicion_x, Arquero.posicion_y, Arquero.imagen.naturalWidth, Arquero.imagen.naturalHeight);
+        dibujarArquero();
+        // context.drawImage(Arquero.imagen, Arquero.posicion_x, Arquero.posicion_y, Arquero.imagen.naturalWidth, Arquero.imagen.naturalHeight);
 
 
 
-        if (cursor_moviendose == true) {
 
-            console.log("entrovski");
-            context.save();
+        // //en progreso de solucion
+        // if (cursor_moviendose == true) {
 
-            context.translate(Arquero.posicion_x, Arquero.posicion_y);
-            context.rotate(Math.random() + 10 * Math.PI / 180);
-            context.drawImage(Arquero.imagen, -Arquero.imagen.width /2  , -Arquero.imagen.width /2 );
+        //     console.log("entrovski");
+        //     context.save();
+
+        //     context.translate(Arquero.posicion_x, Arquero.posicion_y);
+        //     context.rotate(Math.random() + 10 * Math.PI / 180);
+        //     context.drawImage(Arquero.imagen, -Arquero.imagen.width /2  , -Arquero.imagen.width /2 );
             
-            // Reset transformation matrix to the identity matrix
-            context.restore();
+        //     // Reset transformation matrix to the identity matrix
+        //     context.restore();
 
-        }
+        // }
 
+        // //fin progreso solucion
 
 
         
