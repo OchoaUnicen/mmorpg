@@ -10,6 +10,7 @@ let Arquero = {
     "imagen": imagen_arquero,
     "posicion_x": 20,
     "posicion_y": 320,
+    "grados": 0,
     w: 100,
     h: 100,
     "muerto": false

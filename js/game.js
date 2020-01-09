@@ -103,16 +103,22 @@ function cargar_game_js() {
     //-------
 
 
-
+    let cursor_moviendose = true;
 
     canvas.onmousemove = function (e) {
 
+        cursor_moviendose = true;
+        console.log("entro " + cursor_moviendose);
+        //chan
+        
+
+        //aca
         console.log(getMousePos(canvas, e));
 
+        cursor_moviendose = false;
 
+        console.log("salio " + cursor_moviendose);
     }
-
-
 
 
 
@@ -152,7 +158,25 @@ function cargar_game_js() {
         context.drawImage(fondo, 0, 0, fondo.naturalWidth, fondo.naturalHeight);
 
         //dibuja al arquero
+        
         context.drawImage(Arquero.imagen, Arquero.posicion_x, Arquero.posicion_y, Arquero.imagen.naturalWidth, Arquero.imagen.naturalHeight);
+
+
+
+        if (cursor_moviendose == true) {
+
+            console.log("entrovski");
+            context.save();
+
+            context.translate(Arquero.posicion_x, Arquero.posicion_y);
+            context.rotate(Math.random() + 10 * Math.PI / 180);
+            context.drawImage(Arquero.imagen, -Arquero.imagen.width /2  , -Arquero.imagen.width /2 );
+            
+            // Reset transformation matrix to the identity matrix
+            context.restore();
+
+        }
+
 
 
         
