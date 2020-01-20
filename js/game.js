@@ -103,24 +103,65 @@ function cargar_game_js() {
     //-------
 
 
-    let cursor_moviendose = true;
-
+ //*************************************************************************************************************/
+    
     canvas.onmousemove = function (e) {
+        console.log("----------------------------");
+        let opuesto = (Arquero.posicion_x - (getMousePos(canvas, e).x));
 
-        cursor_moviendose = true;
-        console.log("entro " + cursor_moviendose);
-        //chan
+        if (opuesto < 0 ) {
+
+            opuesto = opuesto * -1;
+        }
+
+        console.log("opuesto: "+ opuesto);
+        let adyacente = (Arquero.posicion_y - (getMousePos(canvas, e).y));
+
+
+        if (adyacente < 0) {
+
+            adyacente = adyacente * -1;
+
+        }
+        console.log("adyacente: "+ adyacente);
+
+
+        let aConvertirRadianes;
+
+        if (opuesto > adyacente ) {
+
+            aConvertirRadianes = opuesto / adyacente;
+            console.log("opuesto / adyacente: "+ aConvertirRadianes);
+
+        }
+
+        if (opuesto < adyacente) {
+
+            aConvertirRadianes = adyacente / opuesto;
+
+            console.log("adyacente / opuesto: "+ aConvertirRadianes);
+        }
         
+        
+        let conversionRadianes = (getTanFromDegrees(aConvertirRadianes) * (180 / Math.PI));
+        console.log("Tangente de opuesto / adyacente "+ conversionRadianes);
+        Arquero.grados =  conversionRadianes ;
 
-        //aca
-        console.log(getMousePos(canvas, e));
+        // console.log("----------------------------");
+        
+        // console.log(Arquero.grados);
+       
+        //console.log(getMousePos(canvas, e));
+    
 
-        cursor_moviendose = false;
-
-        console.log("salio " + cursor_moviendose);
     }
 
 
+    function getTanFromDegrees(degrees) {
+        return Math.tan(degrees * 180 / Math.PI);
+        //* Math.PI/180
+      }
+//*************************************************************************************************************/
 
     canvas.addEventListener("click", function (evt) {
         var mousePos = getMousePos(canvas, evt);
@@ -151,7 +192,7 @@ function cargar_game_js() {
             
           //Se utiliza translate para cambiar el centro de rotacion hacia el punto deseado
             context.translate(Arquero.posicion_x + (Arquero.w /2), Arquero.posicion_y + (Arquero.h / 2));
-            context.rotate(Math.random() + 10 * Math.PI / 180);
+            context.rotate(Arquero.grados * Math.PI / 180);
             //context.drawImage(Arquero.imagen, Arquero.posicion_x, Arquero.posicion_y, Arquero.imagen.naturalWidth, Arquero.imagen.naturalHeight);
             context.drawImage(Arquero.imagen, -Arquero.imagen.width /2  , -Arquero.imagen.width /2 );
            // console.log("entrovski");
