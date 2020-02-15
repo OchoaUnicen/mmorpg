@@ -13,7 +13,7 @@ function cargar_game_js() {
     let context = canvas.getContext('2d');
 
 
-
+    console.log("test");
     //limites del mapa
     const LIMITE_IZQUIERDO = -10;
     const LIMITE_DERECHO = 920;
